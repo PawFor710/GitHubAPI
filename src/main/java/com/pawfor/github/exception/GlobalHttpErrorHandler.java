@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -25,13 +26,15 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<Object> handleFormatNotSupported(FormatNotSupportedException e) {
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
+                                                                      HttpHeaders headers,
+                                                                      HttpStatusCode status,
+                                                                      WebRequest request) {
         Map<String, String> errors = new HashMap<>();
         errors.put("Status", String.valueOf(HttpStatus.NOT_ACCEPTABLE));
-        errors.put("Message", "Format not supported");
+        errors.put("Message", "Unsupported Format");
         return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
     }
-
-
 }
