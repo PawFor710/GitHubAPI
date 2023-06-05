@@ -21,7 +21,7 @@
   Installation:
 - Clone code with button CLONE, or copy URL
 - Go to the code directory 
-- Make sure you have tachlologies to ran code
+- Make sure you have proper version technologies to run code
 - Build application
 - Run the application using .jar file
 
