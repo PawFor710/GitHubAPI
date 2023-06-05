@@ -10,3 +10,13 @@
 
 ## General Information
 - This is an application made to get a job as Junior Java Developer.
+- It's an easy way to get your favorite developer's repositories and information about it.
+
+## Technologies
+- SpringBoot 3.1.0
+- Java 17
+- Lombok 
+- Gradle
+
+## Setup
+To install application you should download code from 
