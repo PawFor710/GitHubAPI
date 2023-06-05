@@ -8,5 +8,5 @@
 * [Usage](#usage)
 * [Project Status](#project-status)
 
-##General Information
-This is an application made to get a job as Junior Java Developer.
+## General Information
+- This is an application made to get a job as Junior Java Developer.
