@@ -1,6 +1,7 @@
 package com.pawfor.github.service;
 
 
+import com.pawfor.github.exception.FormatNotSupportedException;
 import com.pawfor.github.exception.UserNotFoundException;
 import com.pawfor.github.model.RepositoryDto;
 import com.pawfor.github.webclient.RepositoryClient;
@@ -20,7 +21,7 @@ public class GithubService {
 
     private final RepositoryClient gitHubClient;
 
-    private List<ResponseRepositoryDto> getRepositories(String username) throws UserNotFoundException {
+    private List<ResponseRepositoryDto> getRepositories(String username) throws Exception {
        return List.of(gitHubClient.getUserRepositoriesHub(username));
     }
 
@@ -28,7 +29,7 @@ public class GithubService {
         return List.of(gitHubClient.getBranchesOfRepository(username, responseRepositoryDto.getName()));
     }
 
-    private Map<ResponseRepositoryDto, List<ResponseBranchDto>> getRepositoriesAndBranches(String username) throws UserNotFoundException {
+    private Map<ResponseRepositoryDto, List<ResponseBranchDto>> getRepositoriesAndBranches(String username) throws Exception {
         Map<ResponseRepositoryDto, List<ResponseBranchDto>> repositoriesAndBranches = new HashMap<>();
         List<ResponseRepositoryDto> repositories = getRepositories(username);
         for(ResponseRepositoryDto obj: repositories) {
@@ -37,9 +38,8 @@ public class GithubService {
         return repositoriesAndBranches;
     }
 
-    public List<RepositoryDto> getGithub(String username) throws UserNotFoundException {
+    public List<RepositoryDto> getGithub(String username) throws Exception {
         Map<ResponseRepositoryDto, List<ResponseBranchDto>> map = getRepositoriesAndBranches(username);
-
         List<RepositoryDto> repositories = new ArrayList<>();
         for (Map.Entry<ResponseRepositoryDto, List<ResponseBranchDto>> entry : map.entrySet()) {
             repositories.add(new RepositoryDto(
@@ -47,7 +47,6 @@ public class GithubService {
                     entry.getKey().getOwner().getLogin(),
                     entry.getValue()));
         }
-
         return repositories;
     }
 

@@ -16,11 +16,16 @@ public class RepositoryClient {
     private static final String BRANCHES_URL = "https://api.github.com/repos/";
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public ResponseRepositoryDto[] getUserRepositoriesHub(String username) throws Exception {
 
-    public ResponseRepositoryDto[] getUserRepositoriesHub(String username) throws UserNotFoundException {
-        return restTemplate.getForObject(REPOSITORIES_URL + "{username}/repos?fork=false",
-                ResponseRepositoryDto[].class,
-                username);
+        try {
+            return restTemplate.getForObject(REPOSITORIES_URL + "{username}/repos?fork=false",
+                    ResponseRepositoryDto[].class,
+                    username);
+        } catch (Exception e) {
+            if (e.getMessage().contains("Not Found")) throw new UserNotFoundException();
+            throw new Exception();
+        }
     }
 
     public ResponseBranchDto[] getBranchesOfRepository(String username, String repository) {
