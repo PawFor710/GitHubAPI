@@ -1,8 +1,6 @@
 package com.pawfor.github.service;
 
 
-import com.pawfor.github.exception.FormatNotSupportedException;
-import com.pawfor.github.exception.UserNotFoundException;
 import com.pawfor.github.model.RepositoryDto;
 import com.pawfor.github.webclient.RepositoryClient;
 import com.pawfor.github.webclient.dto.ResponseBranchDto;

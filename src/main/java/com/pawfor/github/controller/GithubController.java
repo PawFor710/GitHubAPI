@@ -1,6 +1,5 @@
 package com.pawfor.github.controller;
 
-import com.pawfor.github.exception.FormatNotSupportedException;
 import com.pawfor.github.model.RepositoryDto;
 import com.pawfor.github.service.GithubService;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +17,8 @@ public class GithubController {
     private final GithubService gitHubService;
 
     @GetMapping("/{login}")
-    public ResponseEntity<Object> getGitHub(@PathVariable String login) throws Exception  {
-        return ResponseEntity.ok(gitHubService.getGithub(login));
+    public ResponseEntity<List<RepositoryDto>> getGitHub(@PathVariable String login) throws Exception  {
+            return ResponseEntity.ok(gitHubService.getGithub(login));
     }
 
 }
