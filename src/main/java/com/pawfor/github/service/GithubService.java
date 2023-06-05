@@ -1,6 +1,7 @@
 package com.pawfor.github.service;
 
 
+import com.pawfor.github.exception.UserNotFoundException;
 import com.pawfor.github.model.RepositoryDto;
 import com.pawfor.github.webclient.RepositoryClient;
 import com.pawfor.github.webclient.dto.ResponseBranchDto;
@@ -19,7 +20,7 @@ public class GithubService {
 
     private final RepositoryClient gitHubClient;
 
-    private List<ResponseRepositoryDto> getRepositories(String username) {
+    private List<ResponseRepositoryDto> getRepositories(String username) throws UserNotFoundException {
        return List.of(gitHubClient.getUserRepositoriesHub(username));
     }
 
@@ -27,7 +28,7 @@ public class GithubService {
         return List.of(gitHubClient.getBranchesOfRepository(username, responseRepositoryDto.getName()));
     }
 
-    private Map<ResponseRepositoryDto, List<ResponseBranchDto>> getRepositoriesAndBranches(String username) {
+    private Map<ResponseRepositoryDto, List<ResponseBranchDto>> getRepositoriesAndBranches(String username) throws UserNotFoundException {
         Map<ResponseRepositoryDto, List<ResponseBranchDto>> repositoriesAndBranches = new HashMap<>();
         List<ResponseRepositoryDto> repositories = getRepositories(username);
         for(ResponseRepositoryDto obj: repositories) {
@@ -36,7 +37,7 @@ public class GithubService {
         return repositoriesAndBranches;
     }
 
-    public List<RepositoryDto> getGithub(String username) {
+    public List<RepositoryDto> getGithub(String username) throws UserNotFoundException {
         Map<ResponseRepositoryDto, List<ResponseBranchDto>> map = getRepositoriesAndBranches(username);
 
         List<RepositoryDto> repositories = new ArrayList<>();

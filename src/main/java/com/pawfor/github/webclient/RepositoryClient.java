@@ -1,5 +1,6 @@
 package com.pawfor.github.webclient;
 
+import com.pawfor.github.exception.UserNotFoundException;
 import com.pawfor.github.webclient.dto.ResponseBranchDto;
 import com.pawfor.github.webclient.dto.ResponseRepositoryDto;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,9 @@ public class RepositoryClient {
     private final RestTemplate restTemplate = new RestTemplate();
 
 
-    public ResponseRepositoryDto[] getUserRepositoriesHub(String username) {
+    public ResponseRepositoryDto[] getUserRepositoriesHub(String username) throws UserNotFoundException {
         return restTemplate.getForObject(REPOSITORIES_URL + "{username}/repos?fork=false",
-               ResponseRepositoryDto[].class,
+                ResponseRepositoryDto[].class,
                 username);
     }
 
