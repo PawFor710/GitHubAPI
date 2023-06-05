@@ -18,7 +18,7 @@
 - Gradle
 
 ## Setup
-Installation
+  Installation:
 - Clone code with button CLONE, or copy URL
 - Go to the code directory 
 - Make sure you have tachlologies to ran code
