@@ -5,7 +5,6 @@
 * [General Info](#general-information)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Usage](#usage)
 * [Project Status](#project-status)
 
 ## General Information
@@ -19,4 +18,12 @@
 - Gradle
 
 ## Setup
-To install application you should download code from 
+Installation
+- Clone code with button CLONE, or copy URL
+- Go to the code directory 
+- Make sure you have tachlologies to ran code
+- Build application
+- Run the application using .jar file
+
+## Project Status
+This is the beta version of application
